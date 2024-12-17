@@ -1,15 +1,14 @@
-import unittest
-from student import Student
-from group import Group
+import pytest
+from src.student import Student
+from src.group import Group
 
-
-class ImportTest(unittest.TestCase):
+class TestImport:
     def test_import(self):
         # Given
         test_group2 = Group("Test Group")
 
         # When
-        test_group2.import_data("test_group_good.txt")
+        test_group2.import_data("tests/test_group_good.txt")
 
         expected_content = {
             Student("John", "Doe", 12345): 0,
@@ -17,27 +16,24 @@ class ImportTest(unittest.TestCase):
         }
 
         # Then
-        self.assertDictEqual(test_group2.attendance_list, expected_content)
+        assert test_group2.attendance_list == expected_content
 
     def test_import_empty(self):
-         # Given
+        # Given
         test_group = Group("Test Group")
 
         # When
-        test_group.import_data("test_group_empty.txt")
+        test_group.import_data("tests/test_group_empty.txt")
 
         expected_content = {}
 
         # Then
-        self.assertDictEqual(test_group.attendance_list, expected_content)
+        assert test_group.attendance_list == expected_content
 
     def test_import_wrong(self):
         # Given
         test_group = Group("Test Group")
 
         # When and Then
-        self.assertRaises(ValueError, test_group.import_data, "test_group_wrong.txt")
-
-
-if __name__ == '__main__':
-    unittest.main()
+        with pytest.raises(ValueError):
+            test_group.import_data("tests/test_group_wrong.txt")

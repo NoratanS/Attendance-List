@@ -1,10 +1,7 @@
-import unittest
-from student import Student
-from group import Group
+from src.student import Student
+from src.group import Group
 
-
-class AttendanceTests(unittest.TestCase):
-    #TODO testy testy testy...
+class TestAttendance:
     def test_mark_attendance(self):
         # Given
         test_group = Group("Test Group")
@@ -18,8 +15,8 @@ class AttendanceTests(unittest.TestCase):
         test_group.mark_student_attendance(student2, False)
 
         # Then
-        self.assertEqual(test_group.attendance_list[student1], 1)
-        self.assertEqual(test_group.attendance_list[student2], 0)
+        assert test_group.attendance_list[student1] == 1
+        assert test_group.attendance_list[student2] == 0
 
     def test_edit_attendance(self):
         # Given
@@ -36,9 +33,5 @@ class AttendanceTests(unittest.TestCase):
         test_group.edit_attendance(student2, True)
 
         # Then
-        self.assertEqual(test_group.attendance_list[student1], 0)
-        self.assertEqual(test_group.attendance_list[student2], 1)
-
-
-if __name__ == '__main__':
-    unittest.main()
+        assert test_group.attendance_list[student1] == 0
+        assert test_group.attendance_list[student2] == 1

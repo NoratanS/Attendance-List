@@ -1,10 +1,8 @@
-import unittest
-from student import Student
-from group import Group
 import os
+from src.student import Student
+from src.group import Group
 
-
-class SaveTest(unittest.TestCase):
+class TestSave:
     def test_save(self):
         # Given
         test_group1 = Group("Test Group 1")
@@ -19,7 +17,7 @@ class SaveTest(unittest.TestCase):
         test_group1.export_data("test_group1")
 
         # Then
-        self.assertTrue(os.path.exists("test_group1.txt"))
+        assert os.path.exists("test_group1.txt")
 
         # When
         with open("test_group1.txt", "r") as file:
@@ -32,9 +30,6 @@ class SaveTest(unittest.TestCase):
         ]
 
         # Then
-        self.assertEqual(content, expected_content)  # add assertion here
+        assert content == expected_content
 
         os.remove("test_group1.txt")
-
-if __name__ == '__main__':
-    unittest.main()

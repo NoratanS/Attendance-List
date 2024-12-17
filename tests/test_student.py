@@ -1,16 +1,14 @@
-import unittest
-from student import Student
+from src.student import Student
 
-
-class StudentTests(unittest.TestCase):
+class TestStudent:
     def test_student_creation(self):
         # When
         student = Student("John", "Doe", 12345)
 
         # Then
-        self.assertEqual(student.first_name, "John")
-        self.assertEqual(student.last_name, "Doe")
-        self.assertEqual(student.student_id, 12345)
+        assert student.first_name == "John"
+        assert student.last_name == "Doe"
+        assert student.student_id == 12345
 
     def test_student_update(self):
         # Given
@@ -20,8 +18,8 @@ class StudentTests(unittest.TestCase):
         student.update_info("Johnny", "Doe")
 
         # Then
-        self.assertEqual(student.first_name, "Johnny")
-        self.assertEqual(student.last_name, "Doe")
+        assert student.first_name == "Johnny"
+        assert student.last_name == "Doe"
 
     def test_student_equality(self):
         # Given
@@ -29,7 +27,7 @@ class StudentTests(unittest.TestCase):
         student2 = Student("Jane", "Smith", 12345)
 
         # Then
-        self.assertTrue(student1 == student2)
+        assert student1 == student2
 
     def test_student_inequality(self):
         # Given
@@ -37,8 +35,4 @@ class StudentTests(unittest.TestCase):
         student2 = Student("Jane", "Smith", 54321)
 
         # Then
-        self.assertFalse(student1 == student2)
-
-
-if __name__ == '__main__':
-    unittest.main()
+        assert student1 != student2
